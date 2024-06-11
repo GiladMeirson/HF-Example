@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hugging Face Models- TextClassification</title>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="../assets/index.css">
+    <script src="../assets/index.js"></script>
+    <style>
+
+    </style>
+
+</head>
+<body>
+    <header>
+        <img style="cursor: pointer;" onclick="home()" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="">
+
+        <h1>Hugging Face Models </h1>
+
+        <nav style="border-top: 1px solid black;">
+            <ul>
+                <li><a href="./textGen.html">Text Generator</a></li>
+                <li><a href="../pages/textSim.html">Text Similarity</a></li>
+                <li><a href="../pages/textClassification.html">Text Classification</a></li>
+                <li><a href="../pages/text2image.html">Text to Image</a></li>
+                <li><a href="../pages/voicejs.html">v2t & t2v</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h2 style="text-align: center; font-size: 28px;">Text to Image </h2>
+    <div class="container">
+        <div class="input-group">
+           
+            <input type="text" id="userText2ImageIN" value="describe what do you want to see">
+
+            <button onclick="TextToImage()" type="button">Generate Image</button>
+ 
+
+        </div>
+        <div id="imgPH">
+
+        </div>
+
+    </div>
+
+
+
+    <div id="loader">
+        <img src="../assets/1_Gvgic29bgoiGVLmI6AVbUg.gif" alt="">
+    </div>
+</body>
+</html>

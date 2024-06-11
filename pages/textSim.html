@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hugging Face Models- TextSim</title>
+
+    <link rel="stylesheet" href="../assets/index.css">
+    <script src="../assets/index.js"></script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>
+        <img style="cursor: pointer;" onclick="home()" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="">
+
+        <h1>Hugging Face Models </h1>
+
+        <nav style="border-top: 1px solid black;">
+            <ul>
+                <li><a href="./textGen.html">Text Generator</a></li>
+                <li><a href="../pages/textSim.html">Text Similarity</a></li>
+                <li><a href="../pages/textClassification.html">Text Classification</a></li>
+                <li><a href="../pages/text2image.html">Text to Image</a></li>
+                <li><a href="../pages/voicejs.html">v2t & t2v</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <h2 style="text-align: center; font-size: 28px;">Text Similarity <br> 1 = the same <br>
+        0 = different</h2>
+    <div class="container">
+        <div class="input-group">
+            <h3 style="font-size: 26px;">your first sentence</h3>
+            <input type="text" id="testSentenceIN" value="I love client side development">
+            <button onclick="AddSentence(1)" type="button">+</button>
+        </div>
+    </div>
+</body>
+</html>

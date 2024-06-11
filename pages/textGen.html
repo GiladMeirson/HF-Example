@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hugging Face Models- TextGen</title>
+
+    <link rel="stylesheet" href="../assets/index.css">
+    <script src="../assets/index.js"></script>
+</head>
+<body>
+    <header>
+        <img style="cursor: pointer;" onclick="home()" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="">
+
+        <h1>Hugging Face Models </h1>
+
+        <nav style="border-top: 1px solid black;">
+            <ul>
+                <li><a href="./textGen.html">Text Generator</a></li>
+                <li><a href="../pages/textSim.html">Text Similarity</a></li>
+                <li><a href="../pages/textClassification.html">Text Classification</a></li>
+                <li><a href="../pages/text2image.html">Text to Image</a></li>
+                <li><a href="../pages/voicejs.html">v2t & t2v</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+        <h2 id="text-generator">Text Generator : choose model</h2>
+        <select name="model" id="modelIN">
+            <option value="https://api-inference.huggingface.co/models/google/gemma-7b">gemma-7B</option>
+            <option value="https://api-inference.huggingface.co/models/google/gemma-2b">gemma-2B</option>
+            <option value="https://api-inference.huggingface.co/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0">TinyLlama-1.1B</option>
+        </select>
+        <div class="chat-container">
+          
+        </div>
+        <div class="chat-entry">
+            <input id="userTextIN" type="text" placeholder="Type your message here...">
+            <input onclick="ClickTextGen()" type="submit" value="Send">
+        </div>
+    </main>
+</body>
+</html>
