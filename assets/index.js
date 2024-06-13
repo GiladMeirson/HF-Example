@@ -57,6 +57,19 @@ async function queryTextClassification(data) {
 	const result = await response.json();
 	return result;
 }
+async function queryTranslate(data,url) {
+	const response = await fetch(
+		url,
+		{
+			headers: { Authorization: "Bearer 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" },
+			method: "POST",
+			body: JSON.stringify(data),
+		}
+	);
+	const result = await response.json();
+	return result;
+}
+
 
 
 
@@ -290,7 +303,20 @@ const TextToImage=()=>{
 
 
 
-
+const translateText=()=>{
+    let api = `https://api-inference.huggingface.co/models/Helsinki-NLP/${document.getElementById("langIN").value}`;
+    const userText = document.getElementById("translateIN").value;
+    const data = {
+        inputs: userText
+    };
+    queryTranslate(data,api).then((response) => {
+        console.log(response);
+        if (response.error) {
+            return false;
+        }
+        document.getElementById("translated").innerHTML+=response[0].translation_text+'<br>';
+    });
+}
 
 
 

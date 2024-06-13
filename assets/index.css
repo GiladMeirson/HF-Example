@@ -272,3 +272,11 @@ section p {
 #imgPH img {
     margin-block: 12px;
 }
+
+
+#langIN{
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 22px;
+    margin-block: 12px;
+}

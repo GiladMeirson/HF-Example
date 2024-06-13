@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hugging Face Models- TextGen</title>
+    <title>Hugging Face Models- Translate</title>
 
     <link rel="stylesheet" href="../assets/index.css">
     <script src="../assets/index.js"></script>
+    <style>
+
+    </style>
 </head>
 <body>
     <header>
@@ -19,26 +22,30 @@
                 <li><a href="../pages/textClassification.html">Text Classification</a></li>
                 <li><a href="../pages/text2image.html">Text to Image</a></li>
                 <li><a href="../pages/translate.html">Translate Text</a></li>
-
                 <li><a href="../pages/voicejs.html">v2t & t2v</a></li>
             </ul>
         </nav>
     </header>
 
-    <main id="main">
-        <h2 id="text-generator">Text Generator : choose model</h2>
-        <select name="model" id="modelIN">
-            <option value="https://api-inference.huggingface.co/models/google/gemma-7b">gemma-7B</option>
-            <option value="https://api-inference.huggingface.co/models/google/gemma-2b">gemma-2B</option>
-            <option value="https://api-inference.huggingface.co/models/TinyLlama/TinyLlama-1.1B-Chat-v1.0">TinyLlama-1.1B</option>
-        </select>
-        <div class="chat-container">
-          
+    <h2 style="text-align: center; font-size: 28px;">Translate</h2>
+    <div class="container">
+        <div class="input-group">
+            <h3 style="font-size: 26px;"></h3>
+            <select name="langIN" id="langIN">
+                <option value="opus-mt-en-ru">English to Russian</option>
+                <option value="opus-mt-ru-en">Russian to English</option>
+                <option value="opus-mt-en-es ">English to Spanish</option>
+                <option value="opus-mt-es-en ">Spanish to English</option>
+            </select>
+            <input type="text" id="translateIN" value="I love client side development">
+
+            <button onclick="translateText()" type="button">Translate</button>
+
+
+            <br><br><br>
+            <h2 id="translated"></h2>
+            
         </div>
-        <div class="chat-entry">
-            <input id="userTextIN" type="text" placeholder="Type your message here...">
-            <input onclick="ClickTextGen()" type="submit" value="Send">
-        </div>
-    </main>
+    </div>
 </body>
 </html>
