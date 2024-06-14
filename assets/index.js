@@ -148,12 +148,21 @@ const ClickTextGen=()=>{
     const url = modelApi;
     queryTEXTGen(data,url).then((result) => {
         console.log(result);
-        document.getElementsByClassName('chat-container')[0].innerHTML+=
-        `
-            <div class="bot-message">
-                ${result[0].generated_text}
-            </div>
-        `;
+        if (isReady(result)) {
+            document.getElementsByClassName('chat-container')[0].innerHTML+=
+            `
+                <div class="bot-message">
+                    ${result[0].generated_text}
+                </div>
+            `;
+        }
+        else {
+            $.notify("The model is Loading...", "info");
+            setTimeout(() => {
+                ClickTextGen();
+            },4500)
+        }
+
     });
 }
 
@@ -202,12 +211,21 @@ const compareSentences=()=>{
 
     queryTEXTsim(data).then((response) => {
 	    console.log(JSON.stringify(response));
-        for (let i = 0; i < sentences.length; i++) {
-            const input = sentences[i];
-            input.style.backgroundColor = "lightgray";
-            input.value+=` - ${parseFloat(response[i].toFixed(2))*100}%`;
-            
+        if (isReady(response)) {
+            for (let i = 0; i < sentences.length; i++) {
+                const input = sentences[i];
+                input.style.backgroundColor = "lightgray";
+                input.value+=` - ${parseFloat(response[i].toFixed(2))*100}%`;
+                
+            }
         }
+        else {
+            $.notify("The model is Loading...", "info");
+            setTimeout(() => {
+                compareSentences();
+            },4500)
+        }
+
     });
 }
 
@@ -217,25 +235,27 @@ const ClassifyText=()=>{
     const data = {
         inputs: userText
     };
-    try{
+  
 
-        queryTextClassification(data).then((response) => {
-            console.log(response);
+    queryTextClassification(data).then((response) => {
+        console.log(response);
+        if (isReady(response)) {
             console.log(JSON.stringify(response));
             RenderChart(response[0]);
+        }
+        else{
+            $.notify("The model is Loading...", "info");
+            setTimeout(() => {
+                ClassifyText();
+            },4500)
+        }
+
             
-        });
-    }
-    catch(e){
-        console.error(e);
-        setTimeout(() => {
-        queryTextClassification(data).then((response) => {
-            console.log(response);
-            console.log(JSON.stringify(response));
-            RenderChart(response[0]);
-            
-        })}, 1000);
-    }
+    });
+    
+   
+        
+    
 
 }
 
@@ -293,11 +313,17 @@ const TextToImage=()=>{
     queryTEXTtoIMG(data).then((response) => {
         console.log(response);
         const blob = response;
-        const url = URL.createObjectURL(blob);
-        const img = new Image();
-        img.src = url;
-        document.getElementById('imgPH').appendChild(img);
-        document.getElementById('loader').style.display = 'none';
+        if (blob.size<1000) {
+            $.notify("The model is Loading...", "info");
+        }
+        else{
+            const url = URL.createObjectURL(blob);
+            const img = new Image();
+            img.src = url;
+            document.getElementById('imgPH').appendChild(img);
+            document.getElementById('loader').style.display = 'none';
+        }
+
     });
 }
 
@@ -311,10 +337,16 @@ const translateText=()=>{
     };
     queryTranslate(data,api).then((response) => {
         console.log(response);
-        if (response.error) {
-            return false;
+        if (isReady(response)) {
+            document.getElementById("translated").innerHTML+=response[0].translation_text+'<br>';
+
         }
-        document.getElementById("translated").innerHTML+=response[0].translation_text+'<br>';
+        else{
+            $.notify("The model is Loading...", "info");
+            setTimeout(() => {
+                translateText();
+            },4500)
+        }
     });
 }
 
@@ -360,4 +392,17 @@ function getRandomSentence() {
     let randomSentence = sentences[randomVibe][Math.floor(Math.random() * sentences[randomVibe].length)];
 
     return randomSentence;
+}
+
+
+
+
+const isReady=(response)=>{
+    if (response.error !== undefined) {
+        return false;
+        
+    }
+    else{
+        return true;
+    }
 }
