@@ -313,8 +313,11 @@ const TextToImage=()=>{
     queryTEXTtoIMG(data).then((response) => {
         console.log(response);
         const blob = response;
-        if (blob.size<1000) {
+        if (blob.size<800) {
             $.notify("The model is Loading...", "info");
+            setTimeout(() => {
+                TextToImage();
+            },8500)
         }
         else{
             const url = URL.createObjectURL(blob);
