@@ -11,6 +11,7 @@ const sentences = [
     "I love client-side development because it keeps me on my toes with its ever-evolving technologies and techniques."
 ];
 let myChart; // Keep a reference to the chart instance
+const timeEstimate = 8000; // Time in milliseconds to wait before checking if the model is ready
 
 
 async function queryTEXTGen(data,url) {
@@ -160,7 +161,7 @@ const ClickTextGen=()=>{
             $.notify("The model is Loading...", "info");
             setTimeout(() => {
                 ClickTextGen();
-            },4500)
+            },timeEstimate)
         }
 
     });
@@ -247,7 +248,7 @@ const ClassifyText=()=>{
             $.notify("The model is Loading...", "info");
             setTimeout(() => {
                 ClassifyText();
-            },4500)
+            },timeEstimate)
         }
 
             
@@ -317,7 +318,7 @@ const TextToImage=()=>{
             $.notify("The model is Loading...", "info");
             setTimeout(() => {
                 TextToImage();
-            },8500)
+            },timeEstimate*1.15)
         }
         else{
             const url = URL.createObjectURL(blob);
@@ -348,7 +349,7 @@ const translateText=()=>{
             $.notify("The model is Loading...", "info");
             setTimeout(() => {
                 translateText();
-            },4500)
+            },timeEstimate)
         }
     });
 }
