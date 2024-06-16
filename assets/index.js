@@ -74,9 +74,12 @@ async function queryTranslate(data,url) {
 
 
 
+
+
 async function queryTEXTtoIMG(data) {
 	const response = await fetch(
-		"https://api-inference.huggingface.co/models/nitrosocke/Arcane-Diffusion",
+        //https://api-inference.huggingface.co/models/nitrosocke/Arcane-Diffusion
+		"https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
 		{
 			headers: { Authorization: "Bearer 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" },
 			method: "POST",
