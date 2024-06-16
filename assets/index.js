@@ -90,33 +90,29 @@ async function queryTEXTtoIMG(data) {
 	return result;
 }
 
-const voiceToText=()=>{
-   // Check if the browser supports the SpeechRecognition API
-if ('webkitSpeechRecognition' in window) {
-    var recognition = new webkitSpeechRecognition();
-    document.getElementById("phWords").innerHTML='Listening...';
-    recognition.continuous = true; // Enable continuous recognition
-    recognition.interimResults = true; // Enable interim results
+const voiceToText = () => {
+    // Check if the browser supports the SpeechRecognition API
+    if ('webkitSpeechRecognition' in window) {
+      var recognition = new webkitSpeechRecognition();
+      document.getElementById("phWords").innerHTML = 'Listening...';
+      recognition.continuous = false; // Disable continuous recognition
+      recognition.interimResults = false; // Disable interim results
   
-    recognition.onresult = function(event) {
-      var transcript = '';
-      document.getElementById("phWords").innerHTML='Converting...';
-      for (var i = event.resultIndex; i < event.results.length; ++i) {
-        if (event.results[i].isFinal) {
-          transcript += event.results[i][0].transcript;
-          document.getElementById("phWords").innerHTML=transcript;
-          document.getElementById("speakbtn").style.display='block';
+      recognition.onresult = function(event) {
+        var transcript = '';
+        document.getElementById("phWords").innerHTML = 'Converting...';
+        // Process only the last result
+        if (event.results[event.results.length - 1].isFinal) {
+          transcript += event.results[event.results.length - 1][0].transcript;
+          document.getElementById("phWords").innerHTML = transcript;
+          document.getElementById("speakbtn").style.display = 'block';
         }
-      }
-      // Render the transcript in the HTML
-        
-      
-    };
+      };
   
-    recognition.start(); // Start voice recognition
-  } else {
-    console.log('Speech Recognition API not supported by this browser.');
-  }
+      recognition.start(); // Start voice recognition
+    } else {
+      console.log('Speech Recognition API not supported by this browser.');
+    }
 }
 
 
